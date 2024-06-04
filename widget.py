@@ -1,4 +1,5 @@
 def mask_account_card(info_account_card: str) -> str:
+    """Функция для скрытия номера карты или счёта"""
     name_card = ""
     nun_card = ""
     for i in info_account_card:
