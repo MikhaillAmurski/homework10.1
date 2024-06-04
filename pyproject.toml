@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "homework-9-2-git"
+version = "0.1.0"
+description = ""
+authors = ["Amyrski <vivisnext007786@gmail.com>"]
+readme = "README.md"
+packages = [{include = "homework_9"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
