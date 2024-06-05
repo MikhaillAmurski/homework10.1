@@ -1,5 +1,4 @@
-from masks import card_number_hider
-from masks import account_number_hider
+from masks import account_number_hider, card_number_hider
 
 
 def mask_account_card(info_account_card: str) -> str:
