@@ -1,4 +1,4 @@
-from . widget import get_data
+from src.widget import get_data
 
 
 def filter_by_state(list_dict: list, state: str = "EXECUTED") -> list:
