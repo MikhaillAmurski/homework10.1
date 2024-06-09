@@ -19,4 +19,3 @@ def sort_by_date(list_dict: list, user_rev: bool = True) -> list:
     else:
         sorted_list = sorted(list_dict, key=lambda x: get_data(x["date"]), reverse=False)
         return sorted_list
-
