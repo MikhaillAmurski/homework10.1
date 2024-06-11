@@ -3,9 +3,7 @@ def card_number_hider(payment_number: int) -> str:
 
     str_payment_number = str(payment_number)
     if len(str_payment_number) == 16:
-        hidden_payment_number = (
-            f"{str_payment_number[0:4]} {str_payment_number[4:6]}** **** {str_payment_number[-4:]}"
-        )
+        hidden_payment_number = f"{str_payment_number[0:4]} {str_payment_number[4:6]}** **** {str_payment_number[-4:]}"
         return hidden_payment_number
     else:
         return "Ошибка! Введите корректные данные"
