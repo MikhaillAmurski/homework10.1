@@ -94,3 +94,16 @@ usd_transactions = filter_by_currency(transactions, "USD")
 for _ in range(2):
     print(next(usd_transactions)["id"])
 
+
+def transaction_descriptions(bank_list):
+    """генератор, который принимает список словарей и возвращает описание каждой операции по очереди"""
+    for i in bank_list:
+        yield i["description"]
+
+
+descriptions = transaction_descriptions(transactions)
+
+for i in range(5):
+    print(next(descriptions))
+
+
