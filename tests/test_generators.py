@@ -1,5 +1,4 @@
-from typing import Any, Generator
-
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 transactions = (
     [
@@ -82,41 +81,32 @@ transactions = (
 )
 
 
-def filter_by_currency(bank_list, bank_currency):
-    """итератор, который выдает по очереди операции, в которых указана заданная валюта"""
-    my_currency: Generator[Any, Any, None] = (
-        x for x in bank_list if x["operationAmount"]["currency"]["code"] == bank_currency
-    )
-    yield from my_currency
+def test_filter_by_currency():
+    usd_transactions = filter_by_currency(transactions, "USD")
+    assert (next(usd_transactions)["id"]) == 939719570
+    assert (next(usd_transactions)["id"]) == 142264268
 
 
-usd_transactions = filter_by_currency(transactions, "USD")
-
-for _ in range(2):
-    print(next(usd_transactions)["id"])
-
-
-def transaction_descriptions(bank_list):
-    """генератор, который принимает список словарей и возвращает описание каждой операции по очереди"""
-    for i in bank_list:
-        yield i["description"]
-
-
-descriptions = transaction_descriptions(transactions)
-
-for i in range(5):
-    print(next(descriptions))
+def test_transaction_descriptions():
+    expected_result = [
+        "Перевод организации",
+        "Перевод со счета на счет",
+        "Перевод со счета на счет",
+        "Перевод с карты на карту",
+        "Перевод организации",
+    ]
+    result = [transaction for transaction in transaction_descriptions(transactions)]
+    assert result == expected_result
 
 
-def card_number_generator(first_num, last_num):
-    """генератор номеров банковских карт"""
-    for num in range(first_num, last_num+1):
-        add_zeros = str(num).zfill(16)
-        card_number = " ".join([add_zeros[i: i + 4] for i in range(0, len(add_zeros), 4)])
-        yield card_number
+def test_card_number_generator():
+    expected_resulted = [
+        "0000 0000 0000 0001",
+        "0000 0000 0000 0002",
+        "0000 0000 0000 0003",
+        "0000 0000 0000 0004",
+        "0000 0000 0000 0005",
+    ]
 
-
-for card_number in card_number_generator(1, 9):
-    print(card_number)
-
-
+    resulted = [card_number for card_number in card_number_generator(1, 5)]
+    assert resulted == expected_resulted
