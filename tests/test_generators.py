@@ -1,4 +1,6 @@
 from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+import pytest
+
 
 transactions = (
     [
@@ -81,32 +83,30 @@ transactions = (
 )
 
 
-def test_filter_by_currency():
+@pytest.mark.parametrize("valye, expected", [(transactions, 939719570), (transactions, 142264268)])
+def test_filter_by_currency(valye, expected):
     usd_transactions = filter_by_currency(transactions, "USD")
     assert (next(usd_transactions)["id"]) == 939719570
     assert (next(usd_transactions)["id"]) == 142264268
 
 
-def test_transaction_descriptions():
-    expected_result = [
+expected_result = [
         "Перевод организации",
         "Перевод со счета на счет",
         "Перевод со счета на счет",
         "Перевод с карты на карту",
         "Перевод организации",
     ]
+
+
+@pytest.mark.parametrize("value, expected", [(transactions, expected_result)])
+def test_transaction_descriptions(value, expected):
     result = [transaction for transaction in transaction_descriptions(transactions)]
     assert result == expected_result
 
 
-def test_card_number_generator():
-    expected_resulted = [
-        "0000 0000 0000 0001",
-        "0000 0000 0000 0002",
-        "0000 0000 0000 0003",
-        "0000 0000 0000 0004",
-        "0000 0000 0000 0005",
-    ]
+def test_card_number_generator(numbers_cards):
+    expected_resulted = numbers_cards
 
     resulted = [card_number for card_number in card_number_generator(1, 5)]
     assert resulted == expected_resulted
