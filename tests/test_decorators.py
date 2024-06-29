@@ -42,8 +42,7 @@ def test_log_invalid_data_with_file(tmp_path):
     """Проверяем, что сообщение было записано в файл"""
     with open(tmp_path / "my_log.txt", "r") as f:
         assert (
-            f.read()
-            == "my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (3, 'a'), {}\n"
+            f.read() == "my_function error: unsupported operand type(s) for +: 'int' and 'str'. Inputs: (3, 'a'), {}\n"
         )
 
 
@@ -58,7 +57,4 @@ def test_log_invalid_data_without_file(capsys):
 
     """Проверяем, что  сообщение  было выведено в консоль"""
     captured = capsys.readouterr()
-    assert (
-        captured.out
-        == "my_function error: can only concatenate str (not \"int\") to str. Inputs: ('$', 1), {}\n\n"
-    )
+    assert captured.out == "my_function error: can only concatenate str (not \"int\") to str. Inputs: ('$', 1), {}\n\n"

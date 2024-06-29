@@ -28,11 +28,3 @@ def amount_transaction(transaction_by_id):
             return my_result["result"]
         except Exception as e:
             print(e)
-
-
-if __name__ == "__main__":
-    path = "..\\data\\operations.json"
-    transactions = get_data_transactions(path)
-    n = int(input("введите колличество транзакций: "))
-    for i in range(n):
-        print(amount_transaction(transactions[i]))

@@ -35,4 +35,3 @@ def test_amount_transaction_other_currency(mock_request):
     }
     result = amount_transaction(transaction)
     assert result == 704216.961075
-

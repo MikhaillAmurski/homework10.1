@@ -13,4 +13,3 @@ if __name__ == "__main__":
     translated_test = translate_text(text_to_translate, from_lang="en", to_lang="ru")
     print(f"Оригинальный текст: {text_to_translate}")
     print(f"Переведённый текст: {translated_test}")
-

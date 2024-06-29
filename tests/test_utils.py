@@ -11,7 +11,8 @@ def test_successful_read():
     )
     with patch("builtins.open", mock_open(read_data=mock_data)):
         data = get_data_transactions("path_to_file.json")
-        assert data == [{
+        assert data == [
+            {
                 "id": 441945886,
                 "state": "EXECUTED",
                 "date": "2019-08-26T10:50:58.294041",
@@ -19,7 +20,8 @@ def test_successful_read():
                     "amount": "31957.58",
                     "currency": {"name": "руб.", "code": "RUB"},
                 },
-            }]
+            }
+        ]
 
 
 def test_file_not_found():
@@ -39,5 +41,3 @@ def test_json_decode_error():
         data = get_data_transactions("uncorrect_file.json")
 
         assert data == []
-
-
