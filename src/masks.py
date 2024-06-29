@@ -20,7 +20,8 @@ def account_number_hider(account: int) -> str:
         return "Ошибка! Введите корректные данные"
 
 
-result = card_number_hider(7000792289606361)
-result_1 = account_number_hider(73654108430135874305)
-result_2 = card_number_hider(123)
-print(result_1)
+if __name__ == "__main__":
+    result = card_number_hider(7000792289606361)
+    result_1 = account_number_hider(73654108430135874305)
+    result_2 = card_number_hider(123)
+    print(result_1)
